@@ -1,3 +1,4 @@
+import Avatar from './avatar.jpg'
 export default class LastMayday {
   palette() {
     return ({
@@ -12,15 +13,16 @@ export default class LastMayday {
         {
           type: 'rect',
           css: {
-              width: '200rpx',
-              right: '20rpx',
-              top: '30rpx',
-              height: '100rpx',
-              shadow: '10rpx 10rpx 5rpx #888888',
-              color: 'linear-gradient(-135deg, #fedcba 0%, rgba(18, 52, 86, 1) 20%, #987 80%)',
-          }
+            width: '200rpx',
+            right: '20rpx',
+            top: '30rpx',
+            height: '100rpx',
+            shadow: '10rpx 10rpx 5rpx #888888',
+            color: 'linear-gradient(-135deg, #fedcba 0%, rgba(18, 52, 86, 1) 20%, #987 80%)',
+          },
         },
         {
+          id: 'my-text-id',
           type: 'text',
           text: "fontWeight: 'bold'",
           css: [{
@@ -30,6 +32,16 @@ export default class LastMayday {
           }, common],
         },
         {
+          type: 'rect',
+          css: {
+            width: '20rpx',
+            height: '20rpx',
+            color: 'red',
+            left: [`${startTop}rpx`, 'my-text-id'],
+            top: `${startTop + 4 * gapSize + 15}rpx`,
+          },
+        },
+        {
           type: 'text',
           text: '我是把width设置为400rpx后，我就换行了xx行了',
           css: [{
@@ -37,8 +49,11 @@ export default class LastMayday {
             align: 'center',
             width: '400rpx',
             background: '#538e60',
+            textAlign: 'center',
             padding: '10rpx',
-          }, common, { left: '300rpx' }],
+          }, common, {
+            left: '300rpx'
+          }],
         },
         {
           type: 'text',
@@ -59,7 +74,7 @@ export default class LastMayday {
         _des(3, '圆形'),
         {
           type: 'image',
-          url: '/palette/avatar.jpg',
+          url: Avatar,
           css: {
             bottom: '40rpx',
             left: '40rpx',
@@ -131,21 +146,19 @@ function _textDecoration(decoration, index, color) {
 }
 
 function _image(index, rotate, borderRadius) {
-  return (
-    {
-      type: 'image',
-      url: '/palette/avatar.jpg',
-      css: {
-        top: `${startTop + 8.5 * gapSize}rpx`,
-        left: `${startLeft + 160 * index}rpx`,
-        width: '120rpx',
-        height: '120rpx',
-        shadow: '10rpx 10rpx 5rpx #888888',
-        rotate: rotate,
-        borderRadius: borderRadius,
-      },
-    }
-  );
+  return ({
+    type: 'image',
+    url: Avatar,
+    css: {
+      top: `${startTop + 8.5 * gapSize}rpx`,
+      left: `${startLeft + 160 * index}rpx`,
+      width: '120rpx',
+      height: '120rpx',
+      shadow: '10rpx 10rpx 5rpx #888888',
+      rotate: rotate,
+      borderRadius: borderRadius,
+    },
+  });
 }
 
 function _des(index, content) {
