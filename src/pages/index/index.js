@@ -10,7 +10,7 @@ export default class Index extends Component {
   config = {
     navigationBarTitleText: '首页',
     usingComponents: {
-      'painter': '/components/Painter/components/painter/painter'
+      'painter': '/components/painter/painter'
     }
   }
 
@@ -21,7 +21,7 @@ export default class Index extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
       template: new Card().palette()
     })
@@ -38,7 +38,7 @@ export default class Index extends Component {
     });
   }
 
-  render () {
+  render() {
     return (
       <View className='index'>
         <painter customStyle='margin-left:40rpx' palette={this.state.template} onImgOK={this.onImgOK} />
@@ -47,4 +47,3 @@ export default class Index extends Component {
     )
   }
 }
-

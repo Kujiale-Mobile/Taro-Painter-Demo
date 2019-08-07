@@ -1,3 +1,3 @@
-[submodule "src/components/Painter"]
-	path = src/components/Painter
-	url = git@github.com:Kujiale-Mobile/Painter.git
+[submodule "src/components/painter"]
+	path = src/components/painter
+	url = git@github.com:Kujiale-Mobile/PainterCore.git

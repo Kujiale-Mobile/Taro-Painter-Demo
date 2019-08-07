@@ -1,3 +1,4 @@
+import Sky from './sky.jpg'
 export default class ShadowExample {
   palette() {
     return ({
@@ -6,10 +7,10 @@ export default class ShadowExample {
       background: '#eee',
       views: [{
           type: 'image',
-          url: '/palette/sky.jpg',
+          url: Sky,
           css: {
             shadow: '10rpx 10rpx 5rpx #888888',
-          }
+          },
         },
         {
           type: 'rect',
@@ -20,7 +21,7 @@ export default class ShadowExample {
             top: '60rpx',
             shadow: '-10rpx 10rpx 5rpx #888888',
             color: 'linear-gradient(-135deg, #fedcba 0%, rgba(18, 52, 86, 1) 20%, #987 80%)',
-          }
+          },
         },
         {
           type: 'qrcode',
