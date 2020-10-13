@@ -1,49 +1,44 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
-import Card from '../../palette/card'
-import './index.css'
+import Taro, { useEffect, useState } from "@tarojs/taro";
+import { View, Button, Image } from "@tarojs/components";
+import Card from "../../palette/card";
+import Painter from "mina-painter";
+import "./index.css";
 
-let imagePath = ''
+const Index = () => {
+  const [template, setTemplate] = useState({});
+  const [imagePath, setImage] = useState("");
 
-export default class Index extends Component {
+  useEffect(() => {
+    setTemplate(new Card().palette());
+  }, []);
 
-  config = {
-    navigationBarTitleText: '首页',
-    usingComponents: {
-      'painter': '/components/painter/painter'
+  function onImgOK(path) {
+    setImage(path);
+  }
+
+  function saveImage() {
+    if (imagePath) {
+      Taro.saveImageToPhotosAlbum({
+        filePath: imagePath,
+      });
     }
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      template: {},
-    }
-  }
+  return (
+    <View className="index">
+      <Painter
+        customStyle="margin-left:40rpx"
+        palette={template}
+        onImgOK={onImgOK}
+      />
+      <Image src={imagePath} mode="aspectFill" style="height:1000rpx;width:654rpx;margin-left:48rpx;" />
+      <Button className="save-button" onClick={saveImage}>
+        保存
+      </Button>
+    </View>
+  );
+};
 
-  componentDidMount() {
-    this.setState({
-      template: new Card().palette()
-    })
-  }
-
-  onImgOK(e) {
-    imagePath = e.detail.path;
-    console.log(e);
-  }
-
-  saveImage() {
-    Taro.saveImageToPhotosAlbum({
-      filePath: imagePath,
-    });
-  }
-
-  render() {
-    return (
-      <View className='index'>
-        <painter customStyle='margin-left:40rpx' palette={this.state.template} onImgOK={this.onImgOK} />
-        <Button className='save-button' onClick={this.saveImage}>保存</Button>
-      </View>
-    )
-  }
-}
+Index.config = {
+  navigationBarTitleText: "首页",
+};

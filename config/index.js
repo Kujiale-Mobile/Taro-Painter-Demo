@@ -1,102 +1,82 @@
 const config = {
-  projectName: 'Taro-Painter-Demo',
-  date: '2019-8-7',
+  projectName: "test",
+  date: "2020-10-13",
   designWidth: 750,
   deviceRatio: {
-    '640': 2.34 / 2,
-    '750': 1,
-    '828': 1.81 / 2
+    640: 2.34 / 2,
+    750: 1,
+    828: 1.81 / 2,
   },
-  sourceRoot: 'src',
-  outputRoot: 'dist',
-  plugins: {
-    babel: {
-      sourceMap: true,
-      presets: [
-        ['env', {
-          modules: false
-        }]
+  sourceRoot: "src",
+  outputRoot: "dist",
+  babel: {
+    sourceMap: true,
+    presets: [
+      [
+        "env",
+        {
+          modules: false,
+        },
       ],
-      plugins: [
-        'transform-decorators-legacy',
-        'transform-class-properties',
-        'transform-object-rest-spread'
-      ]
-    }
-  },
-  defineConstants: {
-  },
-  copy: {
-    patterns: [
     ],
-    options: {
-    }
+    plugins: [
+      "transform-decorators-legacy",
+      "transform-class-properties",
+      "transform-object-rest-spread",
+      [
+        "transform-runtime",
+        {
+          helpers: false,
+          polyfill: false,
+          regenerator: true,
+          moduleName: "babel-runtime",
+        },
+      ],
+    ],
   },
-  weapp: {
-    module: {
-      postcss: {
-        autoprefixer: {
-          enable: true,
-          config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
-          }
+  plugins: ["@tarojs/plugin-sass", "@tarojs/plugin-terser"],
+  defineConstants: {},
+  mini: {
+    imageUrlLoaderOption: {
+      limit: false, // 大小限制，单位为 b
+    },
+    postcss: {
+      pxtransform: {
+        enable: true,
+        config: {},
+      },
+      url: {
+        enable: true,
+        config: {
+          limit: 1, // 设定转换尺寸上限
         },
-        pxtransform: {
-          enable: true,
-          config: {
-
-          }
-        },
-        url: {
-          enable: true,
-          config: {
-            limit: 10240 // 设定转换尺寸上限
-          }
-        },
-        cssModules: {
-          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-          config: {
-            namingPattern: 'module', // 转换模式，取值为 global/module
-            generateScopedName: '[name]__[local]___[hash:base64:5]'
-          }
-        }
-      }
-    }
+      },
+    },
   },
   h5: {
-    publicPath: '/',
-    staticDirectory: 'static',
-    module: {
-      postcss: {
-        autoprefixer: {
-          enable: true,
-          config: {
-            browsers: [
-              'last 3 versions',
-              'Android >= 4.1',
-              'ios >= 8'
-            ]
-          }
+    publicPath: "/",
+    staticDirectory: "static",
+    postcss: {
+      autoprefixer: {
+        enable: true,
+        config: {
+          browsers: ["last 3 versions", "Android >= 4.1", "ios >= 8"],
         },
-        cssModules: {
-          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-          config: {
-            namingPattern: 'module', // 转换模式，取值为 global/module
-            generateScopedName: '[name]__[local]___[hash:base64:5]'
-          }
-        }
-      }
-    }
-  }
-}
+      },
+      cssModules: {
+        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        config: {
+          namingPattern: "module", // 转换模式，取值为 global/module
+          generateScopedName: "[name]__[local]___[hash:base64:5]",
+        },
+      },
+    },
+  },
+};
 
 module.exports = function (merge) {
-  if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
+  if (process.env.NODE_ENV === "development") {
+    return merge({}, config, require("./dev"));
   }
-  return merge({}, config, require('./prod'))
-}
+  return merge({}, config, require("./prod"));
+};
