@@ -40,7 +40,7 @@
 		"@tarojs/taro-swan": "2.2.8",
 		"@tarojs/taro-tt": "2.2.8",
 		"@tarojs/taro-weapp": "2.2.8",
-		"mina-painter": "^1.0.0",
+		"mina-painter": "^2.2.5",
 		"nerv-devtools": "^1.5.7",
 		"nervjs": "^1.5.7"
 	},

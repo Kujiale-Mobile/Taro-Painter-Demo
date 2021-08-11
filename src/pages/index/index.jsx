@@ -5,7 +5,7 @@ import Painter from "mina-painter";
 import "./index.css";
 
 const Index = () => {
-  const [template, setTemplate] = useState({});
+  const [template, setTemplate] = useState();
   const [imagePath, setImage] = useState("");
 
   useEffect(() => {
